@@ -8,16 +8,28 @@ namespace Expenses
 {
   public  class Expense
     {
-        public decimal Amount { get; set; }
+        private decimal _amount;
+
+        public decimal Amount
+        {
+            get { return _amount; }
+            set
+            {
+                TotalExpenses += value;
+                _amount = value;
+
+            }
+        }
+
         public DateTime ExpenseDate { get; set; }
         public string Category { get; set; }
 
 
-
+        public static decimal TotalExpenses;
 
         public Expense()
         {
-
+           
         }
 
         public Expense(string category,decimal amount,DateTime date)
@@ -25,6 +37,8 @@ namespace Expenses
             Category = category;
             Amount = amount;
             ExpenseDate = date;
+
+            
         }
         public override string ToString()
         {

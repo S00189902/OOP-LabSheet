@@ -35,14 +35,18 @@ namespace Expenses
             Expense e3 = new Expense() { Category = "Other", Amount = 19.21m, ExpenseDate = new DateTime(2019, 11,11) };
 
 
-            expenses = new ObservableCollection<Expense>();
-            expenses.Add(e1);
-            expenses.Add(e2);
-            expenses.Add(e3);
+            expenses = new ObservableCollection<Expense>
+            {
+                e1,
+                e2,
+                e3
+            };
 
             lbxExpenses.ItemsSource = null;
             lbxExpenses.ItemsSource = expenses;
-            
+
+            tblkTotal.Text = Expense.TotalExpenses.ToString();
+
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -50,6 +54,8 @@ namespace Expenses
           // Expense e1 = new Expense() { Category = "Travel", Amount = 22.50m, ExpenseDate = DateTime.Now };
 
             expenses.Add(GetRandomExpense());
+
+            tblkTotal.Text = Expense.TotalExpenses.ToString();
 
 
             
@@ -72,5 +78,7 @@ namespace Expenses
             return e1;
 
         }
+
+        
     }
 }
